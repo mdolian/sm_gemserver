@@ -3,12 +3,12 @@
 # TO-DO: write basic auth user file
 
 eyapi get \
-  string "gemserver/user" default "gemserver"\
+	string "gemserver/user" default "gemserver"\
 	string "gemserver/basic_auth_user" default "gemserver"\
 	string "gemserver/basic_auth_password" default "server123gem"\	
-  string "gemserver/bind" default "127.0.0.1"\
-  string "gemserver/port" default "8808" \
-  string "application/gemserver/domains" default "_"
+	string "gemserver/bind" default "127.0.0.1"\
+	string "gemserver/port" default "8808" \
+	string "application/gemserver/domains" default "_"
 
 templates install "gemserver/nginx.server.conf" \
   to "/etc/nginx/servers/gemserver.conf" \
