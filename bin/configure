@@ -8,15 +8,16 @@ eyapi get \
 	string "gemserver/basic_auth_password" default "server123gem" \	
 	string "gemserver/bind" default "127.0.0.1" \
 	string "gemserver/port" default "8808" \
+	string "gemserver/auth_file" default "/etc/nginx/servers/gemserver.users" \
 	string "application/gemserver/domains" default "_"
 
 templates install "gemserver/nginx.server.conf" \
   to "/etc/nginx/servers/gemserver.conf" \
   mode 0644 \
   with \
-  user "${gemserver_user}" \
   bind "${gemserver_bind}" \
   port "${gemserver_port}" \
+  auth_file "${gemserver_auth_file}" \
   domains "${applications_gemserver_domains}"
 
-exec htpasswd -c /etc/nginx/servers/gemserver.users ${gemserver_basic_auth_user} ${gemserver_basic_auth_password}
+exec htpasswd -c ${gemserver_auth_file} ${gemserver_basic_auth_user} ${gemserver_basic_auth_password}
