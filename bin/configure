@@ -18,3 +18,5 @@ templates install "gemserver/nginx.server.conf" \
   bind "${gemserver_bind}" \
   port "${gemserver_port}" \
   domains "${applications_gemserver_domains}"
+
+exec htpasswd -c /etc/nginx/servers/gemserver.users ${gemserver_basic_auth_user} ${gemserver_basic_auth_password}
