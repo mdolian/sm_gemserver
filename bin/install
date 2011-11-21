@@ -1,0 +1,32 @@
+#!/bin/sh
+
+eyapi get \
+  string "gemserver/user" default "gemserver" \
+	string "gemserver/gem_directory" default "gems"
+	string "rubygems/version" default "1.8.11"	
+
+if ! command -v gem || [[ ! $(gem -v) == "${rubygems_version}" ]]
+then
+  typeset package dir url
+  package="rubygems-${rubygems_version}.tgz"
+  dir="${package%.tgz}"
+  url="http://production.cf.rubygems.org/rubygems/rubygems-${rubygems_version}.tgz"
+
+  curl -L -k "$url" | tar zxf -
+  path enter $dir
+  ruby setup.rb --no-rdoc --no-ri
+  ln -nfs /usr/bin/gem18 /usr/bin/gem
+fi
+
+user create unless exists name "${gemserver_user}" \
+  shell "/bin/bash" home "/home/${gemserver_user}" group "${gemserver_user}"
+
+path create recursive "${gemserver_home}" \
+  owner "${gemserver_user}:${gemserver_user}"
+
+path enter "${gemserver_home}"
+
+paths create "${gemserver_gem_directory}" \
+  owner "${gemserver_user}:${gemserver_user}" \
+  mode 0755
+

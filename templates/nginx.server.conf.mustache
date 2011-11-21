@@ -1,0 +1,24 @@
+# Nginx Server Config for gem server behind a virtual host
+
+upstream gemserver {
+  server {{bind}}:{{port}};
+}
+
+server {
+  listen 80 default;
+
+  server_name {{domains}};
+
+  location / {
+    #auth_basic            "Restricted";
+    #auth_basic_user_file  /etc/nginx/servers/gemserver.users;
+    
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto https;
+    proxy_set_header Host $http_host;
+    proxy_next_upstream error;
+    proxy_pass http://gemserver;
+  }
+
+}
