@@ -2,7 +2,7 @@
 
 eyapi get \
 	string "gemserver/user" default "gemserver" \
-	string "gemserver/gem_directory" default "gems"
+	string "gemserver/gem_directory" default "gems" \
 	string "rubygems/version" default "1.8.11"	
 
 if ! command -v gem || [[ ! $(gem -v) == "${rubygems_version}" ]]
