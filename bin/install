@@ -21,7 +21,7 @@ fi
 gem install builder --no-ri --no-rdoc
 
 user create unless exists name "${gemserver_user}" \
-  shell "/bin/bash" \ 
+  shell "/bin/bash" \
   home "/home/${gemserver_user}" \
   group "${gemserver_user}"
 
