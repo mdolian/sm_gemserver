@@ -3,10 +3,13 @@
 eyapi get \
   string "gemserver/user" default "gemserver"
 
-if user is not ${gemserver_user}
-then
-  log error "sm gemserver stop must be run as ${gemserver_user}"
-fi
+user is ${gemserver_user} ||
+  log error "sm gemserver start must be run as ${gemserver_user}"
 
-# TO-DO: better way?
-exec pkill -9 'gem server'
+typeset -i pid
+pid=$(head -1 "/var/run/${gemserver_user}/${gemserver_user}.pid")
+
+if (( pid ))
+then
+	exec kill -TERM $pid
+fi

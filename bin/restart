@@ -3,10 +3,8 @@
 eyapi get \
   string "gemserver/user" default "gemserver"
 
-if user is not ${gemserver_user}
-then
-  log error "sm gemserver stop must be run as ${gemserver_user}"
-fi
+user is ${gemserver_user} ||
+  log error "sm gemserver start must be run as ${gemserver_user}"
 
 exec sm gemserver stop
 exec sm gemserver start

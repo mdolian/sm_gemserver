@@ -7,9 +7,9 @@ eyapi get \
 	string "gemserver/gem_directory" default "gems" \
   string "gemserver/daemon" default "--daemon"
 
-if user is not ${gemserver_user}
-then
+user is ${gemserver_user} ||
   log error "sm gemserver start must be run as ${gemserver_user}"
-fi
 
-exec gem server --port=${gemserver_port} --bind=${gemserver_bind} --dir=${gemserver_gem_directory} ${daemon}
+file write string $$ to "/var/run/${gemserver_user}/${gemserver_user}.pid"
+
+exec gem server --port=${gemserver_port} --bind=${gemserver_bind} --dir=${gemserver_gem_directory} ${daemon} >> "/var/log/${gemserver_user}/${gemserver_user}.log" 2>&1
