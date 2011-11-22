@@ -20,9 +20,10 @@ fi
 
 gem install builder --no-ri --no-rdoc
 
-
 user create unless exists name "${gemserver_user}" \
-  shell "/bin/bash" home "/home/${gemserver_user}" group "${gemserver_user}"
+  shell "/bin/bash" \ 
+  home "/home/${gemserver_user}" \
+  group "${gemserver_user}"
 
 paths create recursively "/home/${gemserver_user}/${gemserver_gem_directory}/specifications" "/var/run/${gemserver_user}" "/var/log/${gemserver_user}" \
   owner "${gemserver_user}:${gemserver_user}" \

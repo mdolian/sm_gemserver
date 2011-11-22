@@ -1,6 +1,6 @@
 check process {{user}} with pidfile /var/run/{{user}}/{{user}}.pid
-  start program = "sm gemserver start" as uid {{user}} and gid {{user}}
-  stop program = "sm gemserver stop" as uid {{user}} and gid {{user}}
+  start program = "/bin/sm gemserver start" as uid {{user}} and gid {{user}}
+  stop program = "/bin/sm gemserver stop" as uid {{user}} and gid {{user}}
   if failed host {{bind}} port {{port}} then restart
   if 5 restarts within 5 cycles then timeout
   group {{user}}

@@ -12,4 +12,4 @@ eyapi get \
 
 file write string $$ to "/var/run/${gemserver_user}/${gemserver_user}.pid"
 
-exec gem server --port=${gemserver_port} --bind=${gemserver_bind} --dir=/home/${gemserver_user}/${gemserver_gem_directory} ${daemon} >> "/var/log/${gemserver_user}/${gemserver_user}.log" 2>&1
+exec gem server --port=${gemserver_port} --bind=${gemserver_bind} --dir=/home/${gemserver_user}/${gemserver_gem_directory} ${gemserver_daemon} >> "/var/log/${gemserver_user}/${gemserver_user}.log" 2>&1
