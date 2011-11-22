@@ -3,7 +3,7 @@
 eyapi get \
   string "gemserver/user" default "gemserver"
 
-user is ${gemserver_user} ||
+[[ "$USER" == "${gemserver_user}" ]] ||
   log error "sm gemserver start must be run as ${gemserver_user}"
 
 typeset -i pid

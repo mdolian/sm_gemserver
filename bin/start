@@ -7,7 +7,7 @@ eyapi get \
 	string "gemserver/gem_directory" default "gems" \
   string "gemserver/daemon" default "--daemon"
 
-user is ${gemserver_user} ||
+[[ "$USER" == "${gemserver_user}" ]] ||
   log error "sm gemserver start must be run as ${gemserver_user}"
 
 file write string $$ to "/var/run/${gemserver_user}/${gemserver_user}.pid"
