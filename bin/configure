@@ -27,4 +27,3 @@ templates install "gemserver/monitrc" \
 	bind "${gemserver_bind}" \
   port "${gemserver_port}" \
 	user ${gemserver_user}
-	
