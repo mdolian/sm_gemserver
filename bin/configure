@@ -7,7 +7,7 @@ eyapi get \
 	string "gemserver/bind" default "127.0.0.1" \
 	string "gemserver/port" default "8808" \
 	string "gemserver/auth_file" default "/etc/nginx/servers/gemserver.users" \
-	string "application/gemserver/domains" default "_"
+	string "applications/gemserver/domains" default "_"
 
 templates install "gemserver/monitrc" \
 	to "/etc/monit.d/gemserver.monitrc" \
