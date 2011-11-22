@@ -3,7 +3,7 @@
 eyapi get \
 	string "gemserver/user" default "gemserver" \
 	string "gemserver/gem_directory" default "gems" \
-	string "rubygems/version" default "1.8.11"	
+	string "rubygems/version" default "1.5.2"	
 
 if ! command -v gem || [[ ! $(gem -v) == "${rubygems_version}" ]]
 then
@@ -18,7 +18,7 @@ then
   ln -nfs /usr/bin/gem18 /usr/bin/gem
 fi
 
-gem install builder--no-ri --no-rdoc
+gem install builder --no-ri --no-rdoc
 
 
 user create unless exists name "${gemserver_user}" \
