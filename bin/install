@@ -29,4 +29,3 @@ path enter "${gemserver_home}"
 paths create "${gemserver_gem_directory}" \
   owner "${gemserver_user}:${gemserver_user}" \
   mode 0755
-

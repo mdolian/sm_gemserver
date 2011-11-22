@@ -1,7 +1,5 @@
 #!/bin/sh
 
-# TO-DO: write basic auth user file
-
 eyapi get \
 	string "gemserver/user" default "gemserver" \
 	string "gemserver/basic_auth_user" default "gemserver" \
